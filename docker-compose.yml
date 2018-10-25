@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  # database
+  db:
+    container_name: postgis-db
+    image: mdillon/postgis:10
+    ports:
+      - '5433:5432'
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./db/postgres:/var/lib/postgresql/data # banco de dados
+      - ./db/data:/mnt/disks/data # tabelas e bancos de backup
+  # admin of database
+  pgadmin:
+    container_name: game-pgadmin
+    image: thajeztah/pgadmin4
+    ports:
+      - '5050:5050'
+    volumes:
+      - ./pgadmin:/pgadmin
+    depends_on:
+      - db
+  # backend
+  backend:
+    container_name: django-backend
+    build:
+      context: ./backend
+      dockerfile: backend.dockerfile
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./backend:/code
+    ports:
+      - "8000:8000"
