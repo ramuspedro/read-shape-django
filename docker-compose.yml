@@ -2,7 +2,7 @@ version: '3'
 
 services:
   # database
-  db:
+  postgres:
     container_name: postgis-db
     image: mdillon/postgis:10
     ports:
@@ -16,14 +16,14 @@ services:
       - ./db/data:/mnt/disks/data # tabelas e bancos de backup
   # admin of database
   pgadmin:
-    container_name: game-pgadmin
+    container_name: db-pgadmin
     image: thajeztah/pgadmin4
     ports:
       - '5050:5050'
     volumes:
       - ./pgadmin:/pgadmin
     depends_on:
-      - db
+      - postgres
   # backend
   backend:
     container_name: django-backend
@@ -35,3 +35,16 @@ services:
       - ./backend:/code
     ports:
       - "8000:8000"
+    depends_on:
+      - postgres
+  # project frontend
+  frontend:
+    container_name: vue-frontend
+    build:
+      context: ./frontend
+      dockerfile: frontend.dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./frontend:/home/frontend
+    command: "npm run serve"
