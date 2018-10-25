@@ -7,7 +7,13 @@
           <div id="map" class="map"></div>
         </div>
         <div class="col-md-3">
-          <!-- The layer checkboxes go here -->
+          <h4 style="margin-top: 2rem;">Envio de shape zipado</h4>
+          <div style="margin-top: 2rem; margin-bottom: 2rem;">
+            <input type="file">
+          </div>
+          <div>
+            <button type="button" class="btn btn-raised btn-primary" @click="sendShape()">Enviar</button>
+          </div>
         </div>
       </div>
     </div>
@@ -20,23 +26,26 @@
     props: {
       msg: String
     },
-    data: {
-      map: null,
-      tileLayer: null,
-      layers: [],
+    data() {
+      return {
+        map: null,
+        tileLayer: null,
+        layers: [],
+      }
     },
     methods: {
       initMap() {
-        this.map = L.map('map').setView([38.63, -90.23], 12);
-        this.tileLayer = L.tileLayer(
-          'https://cartodb-basemaps-{s}.global.ssl.fastly.net/rastertiles/voyager/{z}/{x}/{y}.png', {
-            maxZoom: 18,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>',
-          }
-        );
+        this.map = L.map('map').setView([-1.45502, -48.5024], 4);
+        this.tileLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        });
         this.tileLayer.addTo(this.map);
       },
       initLayers() {},
+      sendShape() {
+        console.log("TESTE");
+        
+      }
     },
     mounted() {
       this.initMap();
