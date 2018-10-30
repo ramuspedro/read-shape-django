@@ -5,3 +5,4 @@ django-rest-auth
 django-allauth
 django-cors-headers
 djangorestframework-gis==0.13
+django-rest-swagger

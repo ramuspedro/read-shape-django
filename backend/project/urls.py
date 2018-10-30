@@ -16,7 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# swagger documentation
+from rest_framework_swagger.views import get_swagger_view
+
+API_TITLE = 'Shape Test'
+API_DESCRIPTION = 'A Web API'
+
+schema_view = get_swagger_view(title=API_TITLE)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # swagger documentation url
+    path('docs/', schema_view),
+    # apis url
     path('api/', include('analyse.urls')),
 ]

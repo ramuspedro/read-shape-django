@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_gis',
     'rest_framework.authtoken',
+    # documentation
+    'rest_framework_swagger',
     # local apps
     'analyse'
 ]
