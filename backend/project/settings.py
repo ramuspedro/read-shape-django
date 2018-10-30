@@ -49,7 +49,10 @@ INSTALLED_APPS = [
     # 3rd-party apps
     'corsheaders',
     'rest_framework',
+    'rest_framework_gis',
     'rest_framework.authtoken',
+    # documentation
+    'rest_framework_swagger',
     # local apps
     'analyse'
 ]
@@ -65,6 +68,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'project.urls'
+
+SITE_ID = 1
 
 TEMPLATES = [
     {
@@ -90,7 +95,8 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        # 'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': LOCAL_NAME_DB,
         'USER': LOCAL_NAME_USER,
         'PASSWORD': LOCAL_NAME_PASSWORD,
