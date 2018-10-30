@@ -5,4 +5,4 @@ from .models import ShapeUpload
 class ShapeUploadSerializer(serializers.ModelSerializer):
   class Meta:
     model = ShapeUpload
-    fields = ('id', 'title', 'body')
+    fields = '__all__'
