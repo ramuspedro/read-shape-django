@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     # 3rd-party apps
     'corsheaders',
     'rest_framework',
+    'rest_framework_gis',
     'rest_framework.authtoken',
     # local apps
     'analyse'
@@ -93,6 +94,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        # 'ENGINE': 'django.db.backends.postgis',
         'NAME': LOCAL_NAME_DB,
         'USER': LOCAL_NAME_USER,
         'PASSWORD': LOCAL_NAME_PASSWORD,

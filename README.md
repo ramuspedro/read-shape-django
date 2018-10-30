@@ -19,3 +19,14 @@ docker-compose run frontend npm install
 ```
 docker-compose up
 ```
+
+### Problems
+
+* Delete migration of an APP
+
+```
+# enter on app folder and run:
+
+find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+find . -path "*/migrations/*.pyc"  -delete
+```
