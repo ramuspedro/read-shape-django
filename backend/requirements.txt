@@ -1,6 +1,6 @@
 Django
 psycopg2-binary
-djangorestframework==3.8.2
+djangorestframework==3.11.2
 django-rest-auth
 django-allauth
 django-cors-headers
